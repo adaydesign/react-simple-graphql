@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from "react";
+import FilterInput from "./FilterInput";
+import Table from "./Table";
+export const FilterContext = createContext("")
 
-function App() {
+const App = () => {
+  const [filter, setFilter] = useState({type:"vocab",text:""})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FilterContext.Provider value={[filter, setFilter]}>
+      <h1>List of the Law Vocabulary</h1>
+      <div>
+        <FilterInput />
+        </div>
+      <div>
+        <Table />
+      </div>
+    </FilterContext.Provider>
   );
 }
 
